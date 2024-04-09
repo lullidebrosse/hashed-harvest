@@ -1,0 +1,48 @@
+---
+import DiscountBanner from '../components/DiscountBanner.astro';
+import Footer from '../components/Footer.astro';
+import NavigationBar from '../components/NavigationBar.astro';
+import ShoppingNavBar from '../components/ShoppingNavBar.astro';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Fredericka+the+Great&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+		<title>{title}</title>
+	</head>
+	<body class="bg-slate-50">
+		<main>
+			<DiscountBanner />
+			<div class="bg-white">
+				<NavigationBar />
+				<ShoppingNavBar />
+				<slot />
+				<Footer />
+			</div>
+		</main>
+	</body>
+</html>
+<style is:global>
+	html {
+		font-family: "Carrois Gothic SC";
+	}
+</style>

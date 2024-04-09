@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import DiscountBanner from '../components/DiscountBanner.astro';
+import NavigationBar from '../components/NavigationBar.astro';
+import ShoppingNavBar from '../components/ShoppingNavBar.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Hero from '../components/Hero.astro';
+
+const productCategory = [
+	{ name: 'Butters', imageUrl : '/ghee.webp'},
+	{ name: 'Oils', imageUrl : '/oliveoil.JPG'},
+	{ name: 'Drizzles', imageUrl : '/drizzle.webp' },
+
+
+]
+---
+
+<Layout title="Welcome to Hashed Harvest">
+    
+      
+        <div class="bg-white">
+            
+            <Hero />
+			<div class="mx-auto mt-6">
+				<h3 class="text-lg">Shop by category</h3>
+				<hr class="border-t border-gray-200 my-4" />
+				<div class="grid grid-cols-1 mx-4">
+					{productCategory.map((product) => (
+						<ProductCard key={product.name} name={product.name} imageUrl={product.imageUrl} />
+					))}
+				</div>
+				
+
+		    </div>
+        </div>
+    
+</Layout>
+
+
+<style>
+	
+</style>

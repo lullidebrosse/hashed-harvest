@@ -1,0 +1,13 @@
+---
+const { name, imageUrl } = Astro.props;
+---
+
+
+<div class="max-w-sm mx-2 my-4 rounded overflow-hidden shadow-lg h-96 bg-white">
+    <div class="h-4/5 w-full overflow-hidden">
+        <img src={ imageUrl } alt="Product Name" class="w-full h-full object-cover">
+    </div>
+    <div class="h-1/5 w-full flex items-center justify-center bg-hhdarkbrown">
+        <p class="text-xl font-semibold text-white">{ name }</p>
+    </div>
+</div>

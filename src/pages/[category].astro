@@ -1,0 +1,40 @@
+---
+import Product from '../components/Product.astro';
+import ProductCard from '../components/ProductCard.astro';
+import {categories} from '../data/products.js';
+import ProductLayout from '../layouts/ProductLayout.astro';
+
+export function getStaticPaths() {
+  // Generate paths based on the categories data
+  return categories.map((category) => ({
+    params: { category: category.id },
+  }));
+}
+
+const { category } = Astro.params;
+const currentCategory = categories.find(cat => cat.id === category);
+const selectedPotency = currentCategory.products[0].potencies[0].mg;
+---
+
+<ProductLayout>
+<div class="">
+    <div class="grid grid-cols-3 mt-8 text-xl text-center">
+        <a class={currentCategory.id === 'butters' ? 'border-b border-hhlightorangebrown pb-4' : ''} href="/butters">Butters</a>
+        <a class={currentCategory.id === 'oils' ? 'border-b border-hhlightorangebrown pb-4' : ''} href="/oils">Oils</a>
+        <a class={currentCategory.id === 'drizzles' ? 'border-b border-hhlightorangebrown pb-4' : ''} href="/drizzles">Drizzles</a>
+    </div>
+
+
+    <div class="grid grid-cols-1  gap-4 mt-10">
+      {
+        currentCategory.products.map((product)=>(
+          <Product key={product.id} id={product.id} name={product.name} size={product.size} image={product.image} potencies={product.potencies} />
+        ))
+      }
+    </div>
+
+</div>
+</ProductLayout>
+
+
+

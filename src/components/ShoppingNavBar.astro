@@ -1,0 +1,35 @@
+---
+// You can import any necessary scripts or data here
+const cartItemCount = 3; // Example cart item count
+---
+<nav class="bg-hhdarkbrown text-white p-4">
+  <div class="mx-auto flex justify-between items-center">
+    <!-- Company Name -->
+    <div id="companyName" class="">
+      <a href="/" class="hover:text-gray-300 text-xl">Hashed Harvest</a>
+    </div>
+
+    <!-- Middle Links -->
+    <div class="flex space-x-1 text-sm hidden">
+      <a href="/butters" class="border-b-2 border-hhlightbrown hover:text-gray-300">Butters</a>
+      <a href="/oils" class="border-b-2 border-hhlightbrown hover:text-gray-300">Oils</a>
+      <a href="/drizzles" class="border-b-2 border-hhlightbrown hover:text-gray-300">Drizzles</a>
+
+    </div>
+
+    <!-- Cart Icon with Item Count -->
+    <div class="flex text-sm items-center space-x-2 rounded-full p-4 bg-white text-hhdarkbrown">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      <span>{cartItemCount}</span>
+    </div>
+  </div>
+</nav>
+<style>
+    #companyName {
+        font-family: "Fredericka the Great";
+    }
+</style>
+<div id="typed-output"></div>
+

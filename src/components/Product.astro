@@ -1,0 +1,99 @@
+---
+import ProductCard from "./ProductCard.astro"
+
+const { id, name, size, image, potencies } = Astro.props;
+const selectedPotency = potencies[0].mg;
+---
+<div class="mx-4">
+    <ProductCard name={name} imageUrl={image}/>
+    <div class="flex justify-between w-full px-4 text-xl mt-4">
+        <div class="">⭐️ ⭐️ ⭐️ ⭐️ ⭐️ </div>
+        <div class="ml-auto">{size}</div>
+    </div>
+    <hr class="border-t border-gray-200 my-4" />
+    <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab reiciendis, quisquam amet magni obcaecati atque vero enim nisi necessitatibus quis repellat, eius, alias ipsa nihil a nobis voluptate omnis modi?</div>
+
+
+    <div class="relative inline-flex justify-between text-left w-full mt-4">
+        <div class="inline-block">
+
+
+            <button id={"dropdownButton-" + id} type="button" data-product-id={id} class="dropdown-button inline-flex justify-between w-full px-4 py-2 text-md font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none" aria-haspopup="true" aria-expanded="true">
+                {selectedPotency}mg
+              <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+
+
+
+            <div id={`dropdown-${id}`} data-id={`dropdown-${id}`} class="dropdown hidden origin-top-left absolute z-10 left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div class="py-1" role="none">
+               
+                  <div id="potency-selection">
+                    {potencies.map((potency) => (
+                      // Return a JSX element for each potency
+                      <div key={potency.mg} data-value={potency.mg} data-price={potency.price} class="potency-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" data-value={potency.mg} data-product-id={id}>
+                        {potency.mg}mg
+                      </div>
+                    ))}
+                  </div>
+                
+
+              </div>
+            </div>
+
+
+        </div>
+        <div class="self-center text-xl font-bold price-display" data-product-id={id}>{potencies[0].price}</div>
+    </div>
+
+    <button class="w-full mt-4 bg-hhdarkbrown hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-lg">
+        Add to Cart
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H16m-2 4a2 2 0 100-4 2 2 0 000 4zm-8 0a2 2 0 110-4 2 2 0 010 4zm2-12l1.293-1.293c.63-.63 1.707-.184 1.707.707V7h8V5.414c0-.89 1.077-1.337 1.707-.707L21 6z" />
+        </svg>
+      </button> 
+
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.dropdown-button').forEach(button => {
+        button.addEventListener('click', function() {
+          const productId = this.getAttribute('data-product-id');
+          document.getElementById(`dropdown-${productId}`).classList.toggle('hidden');
+        });
+      });
+    
+    //   document.querySelectorAll('.potency-option').forEach(option => {
+    //     option.addEventListener('click', function() {
+    //       const productId = this.getAttribute('data-product-id');
+    //       const selectedValue = this.getAttribute('data-value');
+
+    //       document.getElementById(`dropdownButton-${productId}`).textContent = `${selectedValue}mg`;
+    //       document.getElementById(`dropdown-${productId}`).classList.add('hidden');
+    //     });
+    //   });
+
+    document.querySelectorAll('.potency-option').forEach(option => {
+    option.addEventListener('click', function() {
+      const productId = this.getAttribute('data-product-id');
+      const selectedValue = this.getAttribute('data-value');
+      const selectedPrice = this.getAttribute('data-price'); // Fetch the price
+      
+      // Update the button text to show selected potency
+      document.getElementById(`dropdownButton-${productId}`).textContent = `${selectedValue}mg`;
+      // Find the price display element for this product and update it
+      const priceDisplay = document.querySelector(`.price-display[data-product-id="${productId}"]`);
+      if (priceDisplay) {
+        priceDisplay.textContent = selectedPrice; // Update the price display
+      }
+      // Hide the dropdown
+      document.getElementById(`dropdown-${productId}`).classList.add('hidden');
+    });
+  });
+    });
+    </script>
+    
