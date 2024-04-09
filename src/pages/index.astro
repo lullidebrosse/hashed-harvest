@@ -8,17 +8,15 @@ import ProductCard from '../components/ProductCard.astro';
 import Hero from '../components/Hero.astro';
 
 const productCategory = [
-	{ name: 'Butters', imageUrl : '/ghee.webp'},
-	{ name: 'Oils', imageUrl : '/oliveoil.JPG'},
-	{ name: 'Drizzles', imageUrl : '/drizzle.webp' },
+	{ id: "butters", name: 'Butters', imageUrl : '/ghee.webp'},
+	{ id: "oils",  name: 'Oils', imageUrl : '/oliveoil.JPG'},
+	{ id: "drizzles", name: 'Drizzles', imageUrl : '/drizzle.webp' },
 
 
 ]
 ---
 
 <Layout title="Welcome to Hashed Harvest">
-    
-      
         <div class="bg-white">
             
             <Hero />
@@ -27,11 +25,9 @@ const productCategory = [
 				<hr class="border-t border-gray-200 my-4" />
 				<div class="grid grid-cols-1 mx-4">
 					{productCategory.map((product) => (
-						<ProductCard key={product.name} name={product.name} imageUrl={product.imageUrl} />
+						<a href={"/" + product.id}><ProductCard key={product.name} name={product.name} imageUrl={product.imageUrl} /></a>
 					))}
 				</div>
-				
-
 		    </div>
         </div>
     
