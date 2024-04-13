@@ -20,10 +20,10 @@ const productCategory = [
         <div class="bg-white">
             
             <Hero />
-			<div class="mx-auto mt-6">
-				<h3 class="text-lg">Shop by category</h3>
-				<hr class="border-t border-gray-200 my-4" />
-				<div class="grid grid-cols-1 mx-4">
+			<div id="shopnow" class="mx-auto mt-6">
+				<h3 class="text-lg px-6">Shop by category</h3>
+				<hr class="border-t border-gray-200 my-4 mx-6" />
+				<div  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-4">
 					{productCategory.map((product) => (
 						<a href={"/" + product.id}><ProductCard key={product.name} name={product.name} imageUrl={product.imageUrl} /></a>
 					))}
